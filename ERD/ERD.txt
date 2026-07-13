@@ -1,0 +1,67 @@
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table users {
+    id integer [primary key]
+    username varchar
+    email varchar
+    password varchar
+    coins integer
+    role varchar
+    created_at timestamp
+    update_at timestamp
+}
+
+Table events {
+  id integer [primary key]
+  event_name varchar
+  description text
+  active bool
+  start_date timestamp
+  end_date timestamp
+  created_at timestamp
+  updated_at timestamp
+  images jsonb
+  created_by varchar
+}
+
+Table gacha_items {
+  id integer [primary key]
+  event_id int
+  item_name varchar
+  rarity text
+  drop_rate numeric
+  description text
+  images text
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table user_inventory {
+  id integer [primary key]
+  user_id int
+  item_id int
+  qty int
+  acquired_at timestamp
+  username varchar
+}
+
+Table gacha_log{
+  id integer [primary key]
+  log jsonb
+}
+
+
+
+// Ref :t_list_hadiah.id < t_list_quis.id
+Ref : users.username < events.created_by
+Ref : events.id < gacha_items.event_id
+Ref : users.username < user_inventory.username
+Ref : gacha_log.log > users.username
+Ref : gacha_log.log > gacha_items.id
+Ref : gacha_log.log > gacha_items.item_name
+Ref : gacha_log.log > gacha_items.drop_rate
+Ref : gacha_log.log > gacha_items.rarity
+Ref : gacha_log.log > gacha_items.images
+Ref : gacha_log.log > gacha_items.description
+Ref : gacha_log.log > events.id
+Ref : gacha_log.log > events.event_name
