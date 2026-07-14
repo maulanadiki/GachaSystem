@@ -4,7 +4,7 @@ aplikasi web dengan backend **Express.js** dan frontend **Next.js**.
 Fitur Yang Tersedia Diantaranya Mencangkup
 
 ## 1. Role Users
- - ADMINISTRATOR
+ - ADMINISTRATOR (User : Root, Pass : 12345678)
  - USER
 
 ## 2. Page Login
